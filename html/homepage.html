@@ -8,6 +8,8 @@
 
     <script src="https://kit.fontawesome.com/ba9c642e45.js" crossorigin="anonymous"></script>
 
+    
+
     <title>Home Page</title>
 </head>
 
@@ -52,9 +54,60 @@
 
             <div class="online">
                 
-                <img src="../img/Developers/Developer Randy.png" class="nav-profile-img">
+                <img src="../img/Developers/Developer Randy.png" class="nav-profile-img" onclick="toggleMenu()">
             </div>
 
+        </div>
+
+        <!--PROFILE DROP DOWN-->
+
+        <div class="profile-menu-wrap" id="profileMenu">
+            
+            <div class="profile-menu">
+
+                <div class="user-info">
+
+                    <img src="../img/Developers/Developer Randy.png">
+
+                    <div>
+                        <h3>Andy Deschamps</h3>
+                        <a href="#">See your profile</a>
+                    </div>
+
+                </div>
+
+                <hr>
+                <a href="#" class="profile-menu-link">
+                    <img src="../img/feedback.png">
+                    <p>Give Feedback</p>
+                    <span>></span>
+                </a>
+
+                <a href="#" class="profile-menu-link">
+                    <img src="../img/setting.png">
+                    <p>Setting & Privacy</p>
+                    <span>></span>
+                </a>
+
+                <a href="#" class="profile-menu-link">
+                    <img src="../img/help.png">
+                    <p>Help & Support</p>
+                    <span>></span>
+                </a>
+
+                <a href="#" class="profile-menu-link">
+                    <img src="../img/display.png">
+                    <p>Display & Accessibilty</p>
+                    <span>></span>
+                </a>
+
+                <a href="#" class="profile-menu-link">
+                    <img src="../img/logout.png">
+                    <p>Logout</p>
+                    <span>></span>
+                </a>
+
+            </div>
         </div>
 
 
@@ -91,8 +144,223 @@
 
         <div class="main-content">
 
-        </div>
+            <div class="create-post">
+                <div class="create-post-input">
+                    <img src="../img/Developers/Developer Randy.png">
+                    <textarea rows="2" placeholder="Post your pets..."></textarea>
+                </div>
 
+                <div class="create-post-links">
+                    <li><img src="../img/photo.png">Photo</li>
+                    <li><img src="../img/video.png">Video</li>
+                    <li><img src="../img/event.png">Event</li>
+                    <li>Post</li>
+                </div>
+            </div>
+
+            <div class="sort-by">
+                <hr>
+                <p>Sort by: <span>top <img src="../img/down-arrow.png" ></span></p>
+
+            </div>
+
+            <!--POSTINGS-->
+
+            <div class="post">
+                <div class="post-author">
+                    <img src="../img/Developers/Developer Pyro.png">
+
+                    <div>
+                        <h1>Christian Pyro</h1>
+                        <small>Cheesedog</small>
+                        <small>69 hours ago</small>
+                    </div>
+
+                </div>
+
+                <p>
+                    Ang aso na ito na namamalimos ay isa ng adobo sa inuman namin.
+                </p>
+
+                <img src="../img/stray-dog.jpg" width="100%">
+
+                <div class="post-stats">
+                    <div>
+                        <img src="../img/thumbsup.png">
+                        <img src="../img/love.png">
+                        <img src="../img/clap.png">
+                        <span class="liked-users">Michael Jose and the 69 others</span>
+                    </div>
+
+                    <div>
+
+                        <span>69 comments &middot; 69 shares</span>
+
+                    </div>
+
+                </div>
+
+                <div class="post-activity">
+                    <div>
+                        <img src="../img/Developers/Developer Randy.png" class="post-activity-user-icon">
+                        <img src="../img/down-arrow.png" class="post-activity-arrow-icon" >
+                    </div>
+
+                    <div class="post-activity-link">
+                        <img src="../img/like.png">
+                        <span>Like</span>
+                    </div>
+
+                    <div class="post-activity-link">
+                        <img src="../img/comment.png">
+                        <span>Comment</span>
+                    </div>
+
+                    <div class="post-activity-link">
+                        <img src="../img/share.png">
+                        <span>Share</span>
+                    </div>
+
+                    <div class="post-activity-link">
+                        <img src="../img/send.png">
+                        <span>Send</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="post">
+                <div class="post-author">
+                    <img src="../img/Developers/Developer AJ.png">
+
+                    <div>
+                        <h1>Anette Jorge</h1>
+                        <small>Corndog</small>
+                        <small>69 hours ago</small>
+                    </div>
+
+                </div>
+
+                <p>
+                    Ang aso na ito na namamalimos ay isa ng adobo sa inuman namin.
+                </p>
+
+                <img src="../img/stray-dog.jpg" width="100%">
+
+                <div class="post-stats">
+                    <div>
+                        <img src="../img/thumbsup.png">
+                        <img src="../img/love.png">
+                        <img src="../img/clap.png">
+                        <span class="liked-users">Michael Jose and the 69 others</span>
+                    </div>
+
+                    <div>
+
+                        <span>69 comments &middot; 69 shares</span>
+
+                    </div>
+
+                </div>
+
+                <div class="post-activity">
+                    <div>
+                        <img src="../img/Developers/Developer Randy.png" class="post-activity-user-icon">
+                        <img src="../img/down-arrow.png" class="post-activity-arrow-icon" >
+                    </div>
+
+                    <div class="post-activity-link">
+                        <img src="../img/like.png">
+                        <span>Like</span>
+                    </div>
+
+                    <div class="post-activity-link">
+                        <img src="../img/comment.png">
+                        <span>Comment</span>
+                    </div>
+
+                    <div class="post-activity-link">
+                        <img src="../img/share.png">
+                        <span>Share</span>
+                    </div>
+
+                    <div class="post-activity-link">
+                        <img src="../img/send.png">
+                        <span>Send</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="post">
+                <div class="post-author">
+                    <img src="../img/Developers/Developer Calvin.png">
+
+                    <div>
+                        <h1>Calvin De Luna</h1>
+                        <small>Hatdog</small>
+                        <small>69 hours ago</small>
+                    </div>
+
+                </div>
+
+                <p>
+                    Ang aso na ito na namamalimos ay isa ng adobo sa inuman namin.
+                </p>
+
+                <img src="../img/stray-dog.jpg" width="100%">
+
+                <div class="post-stats">
+                    <div>
+                        <img src="../img/thumbsup.png">
+                        <img src="../img/love.png">
+                        <img src="../img/clap.png">
+                        <span class="liked-users">Michael Jose and the 69 others</span>
+                    </div>
+
+                    <div>
+
+                        <span>69 comments &middot; 69 shares</span>
+
+                    </div>
+
+                </div>
+
+                <!--POST ACTIVITY-->
+
+                <div class="post-activity">
+                    <div>
+                        <img src="../img/Developers/Developer Randy.png" class="post-activity-user-icon">
+                        <img src="../img/down-arrow.png" class="post-activity-arrow-icon" >
+                    </div>
+
+                    <div class="post-activity-link">
+                        <img src="../img/like.png">
+                        <span>Like</span>
+                    </div>
+
+                    <div class="post-activity-link">
+                        <img src="../img/comment.png">
+                        <span>Comment</span>
+                    </div>
+
+                    <div class="post-activity-link">
+                        <img src="../img/share.png">
+                        <span>Share</span>
+                    </div>
+
+                    <div class="post-activity-link">
+                        <img src="../img/send.png">
+                        <span>Send</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
         
         <!--RIGHT SIDEBAR-->
 
@@ -136,8 +404,38 @@
                 <a href="#">See All</a>
             </div>
 
+            <a href="https://paws.org.ph/"><img src="../img/PAWS-New-Logo.png" class="sidebar-group">
+            </a>
+
+            <div class="sidebar-title">
+                <h4>Conversation</h4>
+                <a href="#">Hide Chat</a>
+            </div>
+
+            <div class="online-list">
+                <div class="online">
+                    <img src="../img/Developers/Developer Pyro.png">
+                </div>
+            </div>
+
+            <div class="online-list">
+                <div class="online">
+                    <img src="../img/Developers/Developer Calvin.png">
+                </div>
+            </div>
+
+            <div class="online-list">
+                <div class="online">
+                    <img src="../img/Developers/Developer AJ.png">
+                </div>
+            </div>
+        
+
         </div>
     </div>
+    
+
+    <script src="../js/homepage.js"></script>
     
 </body>
 </html>
