@@ -554,11 +554,14 @@ a{
     margin-right: 8px;
 }
 
+#showMoreLink{
+    display: none;
+}
 
-/*---- RESPONSIVE -------*/
 
-@media screen (max-width: 600px){
+/*---- RESPONSIVE NEWS FEED -------*/
 
+@media (max-width: 600px){
     .search-box{
         background: transparent;
         width: auto;
@@ -568,6 +571,10 @@ a{
     .search-box input{
         width: 0;
         padding: 0;
+    }
+
+    .search-box img{
+        display: none;
     }
 
     .nav-center ul li a span{
@@ -589,9 +596,7 @@ a{
 
     .left-sidebar,
     .right-sidebar{
-        flex-basis: 25%;
-        position: relative;
-        top: unset;
+        display: none;
     }
 
     .main-content{
@@ -609,6 +614,36 @@ a{
     .post-activity-link img{
         margin-right: 0;
     }
+
+    /*---- RESPONSIVE PROFILE -------*/
     
+    .profile-main, .profile-sidebar{
+        flex-basis: 100%
+    }
+
+    .profile-pic{
+        width: 100px;
+        margin-top: -50px;
+    }
+
+    .profile-description{
+        font-size: 14px;
+    }
+
+    #showMoreLink{
+        display: block;
+        width: fit-content;
+        margin: 10px auto;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .sidebar-activity{
+        display: none;
+    }
+
+    .sidebar-activity.open-activity{
+        display: block;
+    }
+
 }
-*/
