@@ -1,131 +1,138 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;700;800;900&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', 'sans-serif';
-    box-sizing: border-box;
-}
 
 :root{
-    --blue-color: #0092ca;
     --white-color: #fff;
-    --black-color: #141010;
-    --light-gray: #e4e8ee;
-    --dark-gray: #5f5f5f;
+    --light-color: #f0eef6;
+    --black-color: #151221;
+    --gray-color: #9e98b3;
+    --dark-color: #241e38;
+    --primary-color: #6b4ce6;
+    --secondary-color: #d6ccff;
+    --green-color: #51fb51;
+    --red-color: #fb5151;
+
+    --border-radius: 2rem;
+    --card-border-radius: 1rem;
+    --btn-padding: 0.6rem 2rem;
+    --search-padding: 0.6rem 1rem;
+    --card-padding: 1rem;
+
+    --sticky-top-left: 5.4rem;
+    --sticky-top-right: -18rem;
+}
+
+*, 
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    border: none;
 }
 
 body{
-    background: var(--light-gray);
-    color: var(--dark-gray);
+    font-family: "Poppins", sans-serif;
+    color: var(--dark-color);
+    background: var(--light-color);
+    overflow-x: hidden
 }
 
-a{
-    text-decoration: none;
-    color: var(--dark-gray);
+/*---- GENERAL----*/
+
+.container{
+    width: 80%;
+    margin: 0 auto;
 }
 
-/*---- NAVBAR START -------*/
-
-.navbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--white-color);
-    padding: 6px 6%;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+.profile-picture{
+    width: 2.7rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .logo img{
-    width: 70px;
+    width: 40px;
     margin-right: 15px;
-    display: block;
-}
-
-.nav-center ul li{
     display: inline-block;
-    list-style: none;
 }
 
-.nav-center ul li a{
-    display: inline-flex;
-    align-items: center;
-    font-size: 14px;
-    margin: 5px 8px;
-    padding-right: 1px;
-    position: relative;
-}
-
-.nav-center ul li a img{
-    width: 30px;
-}
-
-.nav-center ul li a::after{
-    content: ' ';
-    width: 0;
-    height: 2px;
-    background: var(--blue-color);
-    position: absolute;
-    bottom: -15px;
-    transition: width 0.2s;
-}
-
-.nav-center ul li a:hover::after,
-.nav-center ul li a.active-link::after{
+img{
+    display: block;
     width: 100%;
 }
 
-.nav-profile-img {
-    width: 40px;
-    border-radius: 50%;
-    display: block;
+.btn{
+    display: inline-block;
+    padding: var(--btn-padding);
+    font-weight: 500;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    position: relative;
+    transition: all 300ms ease;
+    font-size: 0.9rem;
 }
 
-.online {
-    position: relative;
+.btn:hover{
+    opacity: 0.8;
 }
 
-.online::after{
-    content: ' ';
-    width: 7px;
-    height: 7px;
-    border: 2px solid var(--white-color);
-    border-radius: 50%;
-    right: 0px;
-    top: 0px;
-    background: #41db41;
-    position: absolute;
+.btn-primary{
+    background: var(--primary-color);
+    color: var(--white-color);
+}
+
+.text-muted{
+    color: var(--gray-color);
+}
+
+.text-bold{
+    font-weight: 500;
+}
+
+/*---- NAVBAR ----*/
+
+nav{
+    width: 100%;
+    background: var(--white-color);
+    padding: 0.7rem 0;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+
+nav .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .search-box{
-    background: var(--light-gray);
-    width: 250px;
-    border-radius: 40px;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
+    background: var(--light-color);
+    border-radius: var(--border-radius);
+    padding: var(--search-padding);
 }
 
-.nav-left{
-    display: flex;
-    align-items: center;
-}
-
-.search-box img{
-    width: 10px;
-}
-
-.search-box input{
-    width: 100%;
+.search-box input[type="search"]{
     background: transparent;
-    padding: 8px;
-    outline: none;
-    border: 0;
+    width: 30vw;
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    color: var(--dark-color);
+}
+
+nav .search-box input[type="search"]::placeholder{
+    color: var(--gray-color);
+}
+
+nav .create{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 

@@ -2,12 +2,17 @@
 
 
 :root{
-    --white-color: #fff;
-    --light-color: #f0eef6;
+    --color-primary-hue: 252;
+    --dark-color-ligntness: 17%;
+    --light-color-lightness: 95%;
+    --white-color-lightness: 100%;
+
+    --white-color: hsl(252, 30%, var(--white-color-lightness));
+    --light-color: hsl(252, 30%, var(--light-color-lightness));
     --black-color: #151221;
     --gray-color: #9e98b3;
-    --dark-color: #241e38;
-    --primary-color: #6b4ce6;
+    --dark-color: hsl(252, 30 var(--dark-color-ligntness));
+    --primary-color: hsl(var(--color-primary-hue), 75%, 60%);
     --secondary-color: #d6ccff;
     --green-color: #51fb51;
     --red-color: #fb5151;
