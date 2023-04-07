@@ -53,31 +53,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <h1>Pet Book</h1>
         </div>
         
-        <form class="form" action="sign-up.php" method="post">
 
-            <div class="signup">
-                <div class="form-group">
-                    <input type="text" id ="name" name="name" placeholder="Full name" required>
-                </div>
-                
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Email" required>
-                </div>
-                
-                <div class="form-group">
-                    <input type="password" id="passwords" name="passwords" placeholder="Password" required>
-                </div>
-                
-                <button type="submit" class="btn">Sign Up</button>
-
-                <div class="account-exist">Already have an account? <a href="#" id="login">Login</a>
-                </div>
-            </div>
-        </form>
 
         <form class="form" method = "post">
             
-            <div class="signin">
+            <div class="signup">
                 <div class="form-group">
                     <input type="email" id="email-login" name="email-login" placeholder="Email" required>
                 </div>
@@ -98,13 +78,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
                 <button type="submit" class="btn">Login</button>
 
-                <div class="account-exist">Create new account? <a href="#" id="signup">Sign Up</a>
+                <div class="account-exist">Create new account? <a href="signup.html" id="signup">Sign Up</a>
                 </div>
             </div>
         </form>
     </div>
     
-    <script src="../js/login.js"></script>
+
     
 </body>
 </html>
