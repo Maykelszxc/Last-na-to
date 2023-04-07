@@ -41,7 +41,7 @@ $stmt->bind_param("sss",
                   
 if ($stmt->execute()) {
 
-    header("Location: login.html");
+    header("Location: login.php");
     exit;
     
 } else {
