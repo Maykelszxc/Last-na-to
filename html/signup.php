@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     if ( ! filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-         die("Invalid Email");
+        die("Invalid Email");
 
     }
 
@@ -58,9 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                        }
                     
     }catch(Exception $err) {
-        
-            $notmail = TRUE;        
-            $err->getMessage();
+           
+            $notmail = true;
             }
 }
 ?>
@@ -91,6 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="form-group">
                     <?php if ($mismatch): ?> 
                         <em>Please enter a valid email</em> 
+                        <?php elseif ($notmail):?>
+                            <em style = "color: WHITE">Email already taken </em>
                                 <?php endif;?>
                     <input type="email" id="email" name="email" placeholder="Email" required>
                 </div>
