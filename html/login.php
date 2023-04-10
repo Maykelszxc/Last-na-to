@@ -1,3 +1,41 @@
+<?php
+
+
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    
+    $dbconn = require __DIR__ . "/db.php";
+    
+    $sql = sprintf("SELECT * FROM account_tb
+                    WHERE Email_address = '%s'",
+                   $dbconn->real_escape_string($_POST["email-login"]));
+    
+    $result = $dbconn->query($sql);
+    
+    $user = $result->fetch_assoc();
+    
+    if ($user) {
+        
+        if (password_verify($_POST["password-login"], $user["password"])) {
+            
+            session_start();
+            $_SESSION["user_id"] = $user["username"];
+            header("Location: homepage.html");
+
+            
+
+
+        
+        }
+        
+        
+    
+    } 
+
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,32 +53,11 @@
             <h1>Pet Book</h1>
         </div>
         
-        <form class="form" action="signup.php" method="post">
 
-            <div class="signup">
-                <div class="form-group">
-                    <input type="text" id ="name" name="name" placeholder="Full name" required>
-                </div>
-                
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Email" required>
-                </div>
-                
-                <div class="form-group">
-                    <input type="password" placeholder="Password" required>
-                </div>
-                
-                <button type="submit" class="btn">Sign Up</button>
 
-                <div class="account-exist">Already have an account? <a href="#" id="login">Login</a>
-                </div>
-            </div>
-        </form>
-
-        <form class="form">
+        <form class="form" method = "post">
             
-            <div class="signin">
-
+            <div class="signup">
                 <div class="form-group">
                     <input type="email" id="email-login" name="email-login" placeholder="Email" required>
                 </div>
@@ -61,13 +78,13 @@
                 
                 <button type="submit" class="btn">Login</button>
 
-                <div class="account-exist">Create new account? <a href="#" id="signup">Sign Up</a>
+                <div class="account-exist">Create new account? <a href="signup.html" id="signup">Sign Up</a>
                 </div>
             </div>
         </form>
     </div>
     
-    <script src="../js/login.js"></script>
+
     
 </body>
 </html>
