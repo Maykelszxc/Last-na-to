@@ -1,7 +1,7 @@
 <?php
 
 
-
+$no_credential = FALSE;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     $dbconn = require __DIR__ . "/db.php";
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             session_start();
             $_SESSION["user_id"] = $user["username"];
-            header("Location: homepage.html");
+            header("Location: index.html");
 
             
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
         
     
-    } 
+    } $no_credential = TRUE;
 
 
 }
@@ -59,6 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             <div class="signup">
                 <div class="form-group">
+                <?php if ($no_credential): ?> 
+                    <em style = "color: white">No Matching Credentials</em> 
+                        <?php endif;?>
                     <input type="email" id="email-login" name="email-login" placeholder="Email" required>
                 </div>
                 
@@ -78,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
                 <button type="submit" class="btn">Login</button>
 
-                <div class="account-exist">Create new account? <a href="signup.html" id="signup">Sign Up</a>
+                <div class="account-exist">Create new account? <a href="signup.php" id="signup">Sign Up</a>
                 </div>
             </div>
         </form>
