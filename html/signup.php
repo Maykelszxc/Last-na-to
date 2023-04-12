@@ -71,6 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/login.css">
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
+    <script src="../js/validation.js" defer></script>
 
     <title>Pet Book</title>
 </head>
@@ -80,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             <h1>Pet Book</h1>
         </div>
         
-        <form class="form" method="post">
+        <form class="form" method="post" id="sign-up">
 
             <div class="signup">
                 <div class="form-group">
@@ -91,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     <?php if ($mismatch): ?> 
                         <em>Please enter a valid email</em> 
                         <?php elseif ($notmail):?>
-                            <em style = "color: WHITE">Email already taken </em>
+                            <em style = "color: RED">Email already taken </em>
                                 <?php endif;?>
                     <input type="email" id="email" name="email" placeholder="Email" required>
                 </div>
