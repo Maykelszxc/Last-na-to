@@ -19,8 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (password_verify($_POST["password-login"], $user["password"])) {
             
             session_start();
-            $_SESSION["user_id"] = $user["username"];
-            header("Location: index.html");
+
+            session_regenerate_id();
+
+            $_SESSION["user_id"] = $user["user_id"];
+            header("Location: index.php");
+            exit;
 
             
 

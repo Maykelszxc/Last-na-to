@@ -1,3 +1,76 @@
+<?php
+
+session_start();
+
+if (isset($_SESSION["user_id"])) {
+    if (isset($_POST['submit'])) {
+        $image_file = $_FILES['image'];
+        $image_name = $image_file['name'];
+        $image_data = ($image_file['tmp_name']);
+        $extension = explode('.',$image_name);
+        $fileActualExt = strtolower(end($extension));
+        $newName = uniqid('', true).".".$fileActualExt;
+    
+    
+    
+        $folder='../img/profile-images/';
+        
+        $dbconn = require __DIR__ . "/db.php";
+        
+        $user_id= ("SELECT * FROM account_tb
+        WHERE user_id = $_SESSION[user_id]");
+    
+        $result = $dbconn->query($user_id);
+
+        $UID = $_SESSION["user_id"];
+        
+        $id = $result->fetch_assoc();
+    
+    
+    
+        
+    
+    
+        $sql = "INSERT INTO userprofile(profile_picture_name,user_id)
+                VALUES (?, ?)";
+        $sqlu = "UPDATE userprofile set profile_picture_name = $newName WHERE user_id = $UID )";
+        
+                
+        $stmt = $dbconn->stmt_init();
+    
+        if  (! $stmt->prepare($sql)){
+            die("SQL error: " . $dbconn->error);
+        }
+    
+        $stmt->bind_param("si",
+                        $newName,
+                        $_SESSION["user_id"]
+                    );
+                        
+        if($stmt->execute()){
+            move_uploaded_file($image_data,$folder.$newName);
+            header("location: profile.php");
+        }
+    
+    }
+
+    
+    $dbconn = require __DIR__ . "/db.php";
+
+    $id = $_SESSION["user_id"];
+    
+    $sql = "SELECT profile_picture_name FROM userprofile
+            WHERE user_id = $id";
+            
+    $result = $dbconn->query($sql);
+    
+    $user = $result->fetch_assoc();
+
+    $last = $user["profile_picture_name"];
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,7 +104,7 @@
                     <label class="btn btn-primary" for="create-post">Create</label>
     
                     <div class="profile-picture">
-                        <img src="../img/Developers/Developer Randy.png">
+                        <img src="../img/profile-images/<?php $last; ?>">
                     </div>
     
                 </div>
@@ -47,8 +120,12 @@
             <img src="../img/cover.png" width="100%">
 
             <div class="profile-container-inner">
-                <img src="../img/Developers/Developer Randy.png" class="profile-pic">
+                <img src="../img/profile-images/<?=($user["profile_picture_name"])?>" class="profile-pic">
+                <form method="post" action="profileu.php" enctype="multipart/form-data">
+                    <input type="file" name="image" id="image">
+                    <button type="submit" name="submit">Submit</button>
 
+                </form>
                 <h1>Andy Deschamps</h1>
                 <h3>Only account</h3>
                 <p>See more about Andy's<a href="#"> contact Info</a>            

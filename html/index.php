@@ -1,3 +1,29 @@
+<?php
+
+session_start();
+
+if (isset($_SESSION["user_id"])) {
+    
+    
+    $dbconn = require __DIR__ . "/db.php";
+    
+    $sql = "SELECT * FROM account_tb
+            WHERE user_id = {$_SESSION["user_id"]}";
+            
+    $result = $dbconn->query($sql);
+    
+    $user = $result->fetch_assoc();
+
+};
+
+if (! isset($user)){
+    header("location: login.php");
+    exit;
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +40,13 @@
 </head>
 
 <body>
+    
 
     <!--NAV BAR-->
 
     <nav>
         <div class="container">
-            <a href="index.html">
+            <a href="index.php">
                 <h2 class="logo">
                     <img src="../img/logo-icons.png">
                 </h2>
@@ -32,11 +59,20 @@
             </div>
 
             <div class="create">
+
                 <label class="btn btn-primary" for="create-post">Create</label>
+                
 
                 <div class="profile-picture">
-                    <img src="../img/Developers/Developer Randy.png">
+                    <a href = profile.php><img src="../img/Developers/Developer Randy.png"></a>
+                    
+                    
                 </div>
+                <a href="logout.php" class="create">
+                    <img src="../img/logout.png">
+                    <p>Logout</p>
+                    <span>></span>
+                </a>
 
             </div>
         </div>
