@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
     
     $id = $result->fetch_assoc();
 
-    $sql = "UPDATE userprofile set  profile_picture_name='" . $newName .  "' WHERE user_id='" . $UID. "'";
+    $sql = "UPDATE account_tb set  profile_picture_name='" . $newName .  "' WHERE user_id='" . $UID. "'";
 
    if (mysqli_query($dbconn, $sql)){
     move_uploaded_file($image_data,$folder.$newName);

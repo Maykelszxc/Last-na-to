@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $dbconn = require __DIR__ . "/db.php";
     
     $sql = sprintf("SELECT * FROM account_tb
-                    WHERE Email_address = '%s'",
+                    WHERE email_address = '%s'",
                    $dbconn->real_escape_string($_POST["email-login"]));
     
     $result = $dbconn->query($sql);
@@ -49,12 +49,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="../css/login.css">
 
     <title>Pet Book</title>
+    <style>
+    body{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../img/Background/petbookblur.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    z-index: -1;
+        }
+        
+        </style>
 </head>
 <body>
 
     <div class="wrapper">
         <div class="headline">
-            <h1>Pet Book</h1>
+            <h1 style = "color: BLACK">Pet Book</h1>
         </div>
         
 
@@ -77,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     
                     <div class="check-box">
                         <input type="checkbox" id="checkbox">
-                        <label for="checkbox">Remember me</label>
+                        <label for="checkbox" style = "color: BLACK" >Remember me</label>
                     </div>
                     
                     <a href="#">Forget Password?</a>
@@ -85,11 +103,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
                 <button type="submit" class="btn">Login</button>
 
-                <div class="account-exist">Create new account? <a href="signup.php" id="signup">Sign Up</a>
+                <div class="account-exist" style = "color: BLACK">Create new account? <a href="signup.php" id="signup">Sign Up</a>
                 </div>
             </div>
         </form>
     </div>
+ 
     
 
     

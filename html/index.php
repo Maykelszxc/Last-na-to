@@ -6,13 +6,18 @@ if (isset($_SESSION["user_id"])) {
     
     
     $dbconn = require __DIR__ . "/db.php";
+
+    $UID = $_SESSION["user_id"];
     
     $sql = "SELECT * FROM account_tb
-            WHERE user_id = {$_SESSION["user_id"]}";
+            WHERE user_id = $UID";
             
     $result = $dbconn->query($sql);
     
     $user = $result->fetch_assoc();
+    
+    $dp = $user["profile_picture_name"];
+
 
 };
 
@@ -40,13 +45,12 @@ if (! isset($user)){
 </head>
 
 <body>
-    
 
     <!--NAV BAR-->
 
     <nav>
         <div class="container">
-            <a href="index.php">
+            <a href="index.html">
                 <h2 class="logo">
                     <img src="../img/logo-icons.png">
                 </h2>
@@ -59,20 +63,11 @@ if (! isset($user)){
             </div>
 
             <div class="create">
-
                 <label class="btn btn-primary" for="create-post">Create</label>
-                
 
                 <div class="profile-picture">
-                    <a href = profile.php><img src="../img/Developers/Developer Randy.png"></a>
-                    
-                    
+                    <a href = "profile.php"><img src="../img/profile-images/<?=$dp?>"></a>
                 </div>
-                <a href="logout.php" class="create">
-                    <img src="../img/logout.png">
-                    <p>Logout</p>
-                    <span>></span>
-                </a>
 
             </div>
         </div>
@@ -89,7 +84,7 @@ if (! isset($user)){
 
                 <a class="profile">
                     <div class="profile-picture">
-                        <img src="../img/Developers/Developer Randy.png">
+                        <img src="../img/profile-images/<?=$dp?>">
                     </div>
                     <div class="handle">
                         <h4>Andy Deschamps</h4>
@@ -177,13 +172,6 @@ if (! isset($user)){
 
                     </a>
 
-                    <a class="menu-item">
-
-                        <span><i class="uil uil-bookmark"></i></span>
-                        <h3>Bookmark</h3>
-
-                    </a>
-
                     <a class="menu-item" id="theme">
 
                         <span><i class="uil uil-palette"></i></i></span>
@@ -194,6 +182,13 @@ if (! isset($user)){
 
                         <span><i class="uil uil-setting"></i></span>
                         <h3>Settings</h3>
+
+                    </a>
+
+                    <a class="menu-item" href = "logout.php">
+
+                        <span><i class="uil uil-signout"></i></span>
+                        <h3>Logout</h3>
 
                     </a>
 
@@ -213,7 +208,7 @@ if (! isset($user)){
                 <!--CREATE POST-->
                 <form class="create-post">
                     <div class="create-post-input">
-                        <img src="../img/Developers/Developer Randy.png">
+                        <img src="../img/profile-images/<?=$dp?>">
                         <textarea rows="2" placeholder="Post your pets..."></textarea>
                     </div>
                     

@@ -4,40 +4,28 @@ $notpass = FALSE;
 $notmail = FALSE;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    if (empty($_POST["name"])) {
-        echo ("Name is required");
-    }
 
-    if ( ! filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-        die("Invalid Email");
+        $image_file = $_FILES['image'];
+        $image_name = $image_file['name'];
+        $image_data = ($image_file['tmp_name']);
+        $extension = explode('.',$image_name);
+        $fileActualExt = strtolower(end($extension));
+        $newName = uniqid('', true).".".$fileActualExt;
+    
+    
+    
+        $folder='../img/profile-images/';
+        
+    
 
-    }
-
-    if (strlen($_POST["passwords"]) < 8) {
-        die("Password length must have at least 8 characters");
- 
-
-    }
-
-    if ( ! preg_match("/[a-z]/i", $_POST["passwords"])) {
-        die("Password must have at least 1 letter");
-
-
-    }
-
-    if ( ! preg_match("/[0-9]/", $_POST["passwords"])) {
-        die("Password must have at least 1 number");
-
-
-    }
 
 
     $passwords = password_hash($_POST["passwords"], PASSWORD_DEFAULT);
 
     $dbconn = require __DIR__ . "/db.php";
 
-    $sql = "INSERT INTO account_tb (name, email_address, password)
-            VALUES (?, ?, ?)";
+    $sql = "INSERT INTO account_tb (name, email_address, password,profile_picture_name)
+            VALUES (?, ?, ?,?)";
             
     $stmt = $dbconn->stmt_init();
 
@@ -45,14 +33,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         die("SQL error: " . $dbconn->error);
     }
 
-    $stmt->bind_param("sss",
+    $stmt->bind_param("ssss",
                     $_POST["name"],
                     $_POST["email"],
-                    $passwords);
+                    $passwords,
+                    $newName);
                     
     try{
         if ($stmt->execute()) {
-                    
+
+            move_uploaded_file($image_data,$folder.$newName);        
             header("Location: login.php");
             exit;
                        }
@@ -75,18 +65,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="../js/validation.js" defer></script>
 
     <title>Pet Book</title>
+    <style>
+    body{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../img/Background/petbookblur.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    z-index: -1;
+        }
+        
+        </style>
 </head>
 <body>
     <div class="wrapper">
         <div class="headline">
-            <h1>Pet Book</h1>
+            <h1 style = "color: BLACK">Pet Book</h1>
         </div>
         
-        <form class="form" method="post" id="sign-up">
+        <form class="form" method="post" id="sign-up" enctype="multipart/form-data">
 
             <div class="signup">
                 <div class="form-group">
                     <input type="text" id ="name" name="name" placeholder="Full name" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id ="username" name="username" placeholder="Username" required>
                 </div>
                 
                 <div class="form-group">
@@ -103,6 +115,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         <em>Password must be at least 8 characters and have 1 letter and number</em> 
                         <?php endif; ?>
                     <input type="password" id="passwords" name="passwords" placeholder="Password" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="form-label" style = "color: BLACK">Profile Picture</label>
+                    <input type="file" class="form-control" name="image" id="image" style = "color: BLACK">
                 </div>
                 
                 <button type="submit" class="btn">Sign Up</button>

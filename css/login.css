@@ -29,14 +29,14 @@ body{
     margin:auto;
 }
 
-.wrapper::after{
+.wrapper .background{
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("../img/Background/catagain4k.jpg");
+    background-image: url("../img/Background/petbooklogin.jpg");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
