@@ -236,7 +236,7 @@ if (! isset($user)){
 
                                 </div>
 
-                                <div class="ingo">
+                                <div class="info">
 
                                     <h3>Pyro Bansuelo</h3>
 
@@ -267,8 +267,8 @@ if (! isset($user)){
                                 <span><i class="uil uil-share-alt"></i></span>
                             </div>
 
-                            <div class="bookmark">
-                                <span><i class="uil uil-bookmark-full"></i></span>
+                            <div class="home">
+                                <span><i class="uil uil-house-user"></i></span>
                             </div>
                         </div>
 
@@ -301,7 +301,7 @@ if (! isset($user)){
 
                                 </div>
 
-                                <div class="ingo">
+                                <div class="info">
 
                                     <h3>Anette Babatio</h3>
 
@@ -332,8 +332,8 @@ if (! isset($user)){
                                 <span><i class="uil uil-share-alt"></i></span>
                             </div>
 
-                            <div class="bookmark">
-                                <span><i class="uil uil-bookmark-full"></i></span>
+                            <div class="home">
+                                <span><i class="uil uil-house-user"></i></span>
                             </div>
                         </div>
 
@@ -366,7 +366,7 @@ if (! isset($user)){
 
                                 </div>
 
-                                <div class="ingo">
+                                <div class="info">
 
                                     <h3>Calvin De Luna</h3>
 
@@ -397,8 +397,8 @@ if (! isset($user)){
                                 <span><i class="uil uil-share-alt"></i></span>
                             </div>
 
-                            <div class="bookmark">
-                                <span><i class="uil uil-bookmark-full"></i></span>
+                            <div class="home">
+                                <span><i class="uil uil-house-user"></i></span>
                             </div>
                         </div>
 
