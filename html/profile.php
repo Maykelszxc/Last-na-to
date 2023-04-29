@@ -44,7 +44,7 @@ if(! isset($_SESSION["user_id"])){
         
         <nav>
             <div class="container">
-                <a href="index.html">
+                <a href="index.php">
                     <h2 class="logo">
                         <img src="../img/logo-icons.png">
                     </h2>

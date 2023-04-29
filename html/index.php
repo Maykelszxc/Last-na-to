@@ -1,13 +1,14 @@
 <?php
 
 session_start();
+$UID = $_SESSION["user_id"];
 
 if (isset($_SESSION["user_id"])) {
     
     
     $dbconn = require __DIR__ . "/db.php";
 
-    $UID = $_SESSION["user_id"];
+
     
     $sql = "SELECT * FROM account_tb
             WHERE user_id = $UID";
@@ -15,11 +16,50 @@ if (isset($_SESSION["user_id"])) {
     $result = $dbconn->query($sql);
     
     $user = $result->fetch_assoc();
+    $name = $user["name"];
     
     $dp = $user["profile_picture_name"];
 
 
+        $posts_sql = "SELECT * FROM posts ORDER BY date_created DESC";
+            
+    $posts_result = $dbconn->query($posts_sql);
+
+
+
+    
+
+
 };
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $dbconn = require __DIR__ . "/db.php";
+    $publicProfileSql = "SELECT * FROM account_tb WHERE user_id = $UID";
+    $publicProfileSqlResult = $dbconn ->query($publicProfileSql);
+    $publicProfile = $publicProfileSqlResult->fetch_assoc();
+    $publicUser = $publicProfile["name"];
+    $postProfile = $publicProfile["profile_picture_name"];
+    $newPostSql = "INSERT INTO posts(user_id, post_content, public_profile_picture, username) VALUES (?,?,?,?)";
+    
+
+    $stmt = $dbconn->stmt_init();
+    $stmt->prepare($newPostSql);
+    $stmt->bind_param("isss",
+                    $$UID,
+                    $_POST["post_content"],
+                    $postProfile,
+                    $publicUser
+                    );
+
+
+    if($stmt->execute()){
+        header("Location: index.php");
+    };
+                      
+
+                };
+
 
 if (! isset($user)){
     header("location: login.php");
@@ -87,7 +127,7 @@ if (! isset($user)){
                         <img src="../img/profile-images/<?=$dp?>">
                     </div>
                     <div class="handle">
-                        <h4>Andy Deschamps</h4>
+                        <h4><?=$name?></h4>
                         <p class="text-muted">
                             @Andy
                         </p>
@@ -206,17 +246,17 @@ if (! isset($user)){
             <div class="middle">
 
                 <!--CREATE POST-->
-                <form class="create-post">
+                <form class="create-post" method = "post">
                     <div class="create-post-input">
                         <img src="../img/profile-images/<?=$dp?>">
-                        <textarea rows="2" placeholder="Post your pets..."></textarea>
+                        <input type = "text" id ="post_content" name ="post_content" placeholder="Post your pets..." >
                     </div>
                     
                     <div class="create-post-links">
                         <li><i class="uil uil-camera"></i>Photo</li>
                         <li><i class="uil uil-video"></i>Video</li>
                         <li><i class="uil uil-file-upload-alt"></i>Documents</li>
-                        <li class="btn btn-primary">Post</li>
+                        <button class="btn btn-primary" type = "submit" id="submit">Post</li>
                     </div>
                     
                 </form>
@@ -224,23 +264,28 @@ if (! isset($user)){
                 <!--NEWS FEEDS-->
                 
                 <div class="feeds">
-                    <div class="feed">
-
+  
+                <div class="feed">
+                <?php while($user = $posts_result->fetch_assoc()):
+                    $identifier = $user["username"];
+                    $post_content = $user["post_content"];
+                    $date_created = $user["date_created"];
+                    $publicDP = $user["public_profile_picture"]?>      
                         <div class="head">
 
                             <div class="user">
 
                                 <div class="profile-picture">
 
-                                    <img src="../img/Developers/Developer Pyro.png">
+                                    <img src="../img/profile-images/<?=$publicDP?>">
 
                                 </div>
 
                                 <div class="info">
 
-                                    <h3>Pyro Bansuelo</h3>
+                                    <h3><?=$identifier?></h3>
 
-                                    <small>Manila, 12 MINUTES AGO</small>
+                                    <small><?=$date_created?></small>
 
                                 </div>
 
@@ -282,148 +327,23 @@ if (! isset($user)){
                         </div>
 
                         <div class="captions">
-                            <p><b>Pyro Bansuelo</b> Please adopt this cats <span class="hash-tag">#PetAdoption</span></p>
+                            <p><b><?=$identifier?></b><?=" ", $post_content?></p>
                         </div>
 
                         <div class="comments text-muted">View all 3 comments</div>
+                        <div style="height: 10px; background-color: #EAEFF5; margin-bottom: 12px" ></div>
 
+                        <?php endwhile;?>
                     </div>
+</div>
 
-                    <div class="feed">
 
-                        <div class="head">
 
-                            <div class="user">
-
-                                <div class="profile-picture">
-
-                                    <img src=".././img/Developers/Developer AJ.png">
-
-                                </div>
-
-                                <div class="info">
-
-                                    <h3>Anette Babatio</h3>
-
-                                    <small>Technological Institute of the Philippines, 1 HOUR AGO</small>
-
-                                </div>
-
-                            </div>
-
-                            <span class="edit">
-                                    
-                                <i class="uil uil-ellipsis-h"></i>
-
-                            </span>
-
-                        </div>
-
-                        <div class="photo">
-
-                            <img src="../img/IMG_8362.png">
-
-                        </div>
-
-                        <div class="action-buttons">
-                            <div class="interaction-buttons">
-                                <span><i class="uil uil-heart"></i></span>
-                                <span><i class="uil uil-comment-dots"></i></span>
-                                <span><i class="uil uil-share-alt"></i></span>
-                            </div>
-
-                            <div class="home">
-                                <span><i class="uil uil-house-user"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="liked-by">
-
-                            <span><img src="../img/Developers/Developer AJ.png"></span>
-                            <span><img src="../img/Developers/Developer Calvin.png"></span>
-                            <span><img src="../img/Developers/Developer Mayks.png"></span>
-
-                            <p>Liked by <b>Pyro Bansuelo</b> and 3 others</p> 
-                        </div>
-
-                        <div class="captions">
-                            <p><b>Anette Babatio</b> Poor cat near in TIP Manila <span class="hash-tag">#Arlegui</span></p>
-                        </div>
-
-                        <div class="comments text-muted">View all 3 comments</div>
-
-                    </div>
-
-                    <div class="feed">
-
-                        <div class="head">
-
-                            <div class="user">
-
-                                <div class="profile-picture">
-
-                                    <img src="../img/Developers/Developer Calvin.png">
-
-                                </div>
-
-                                <div class="info">
-
-                                    <h3>Calvin De Luna</h3>
-
-                                    <small>Mall of Asia Seaside, 12 DAYS AGO</small>
-
-                                </div>
-
-                            </div>
-
-                            <span class="edit">
-                                    
-                                <i class="uil uil-ellipsis-h"></i>
-
-                            </span>
-
-                        </div>
-
-                        <div class="photo">
-
-                            <img src="../img/IMG_9895.png">
-
-                        </div>
-
-                        <div class="action-buttons">
-                            <div class="interaction-buttons">
-                                <span><i class="uil uil-heart"></i></span>
-                                <span><i class="uil uil-comment-dots"></i></span>
-                                <span><i class="uil uil-share-alt"></i></span>
-                            </div>
-
-                            <div class="home">
-                                <span><i class="uil uil-house-user"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="liked-by">
-
-                            <span><img src="../img/Developers/Developer AJ.png"></span>
-                            <span><img src="../img/Developers/Developer Calvin.png"></span>
-                            <span><img src="../img/Developers/Developer Mayks.png"></span>
-
-                            <p>Liked by <b>Anette Babatio</b> and 3 others</p> 
-                        </div>
-
-                        <div class="captions">
-                            <p><b>Calvin De Luna</b> Cute cat in seaside please adopt <span class="hash-tag">#SeaSide</span></p>
-                        </div>
-
-                        <div class="comments text-muted">View all 3 comments</div>
-
-                    </div>
-
-                </div>
 
                 <!--END OF NEWS FEEDS-->
 
             </div>
+
 
             <!--END OF MIDDLE-->
 
