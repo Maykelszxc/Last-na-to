@@ -335,7 +335,7 @@ main .container .left .profile{
     align-items: flex-start;
 }
 
-.middle .create-post-links li {
+.middle .create-post-links label {
     list-style: none;
     border-top: 1px solid var(--light-gray);
     border-right: 1px solid var(--light-gray);
@@ -349,16 +349,20 @@ main .container .left .profile{
     margin: 2px;
 }
 
-.middle .create-post-links li img{
+.middle .create-post-links label img{
     width: 15px;
     margin-right: 5px;
 }
 
-.middle .create-post-links li:last-child{
+.middle .create-post-links label:last-child{
     background: var(--primary-color);
     color: var(--white-color);
     border-top: 0;
     border-right: 0;
+}
+
+input[type="file"]{
+    display: none;
 }
 
 
