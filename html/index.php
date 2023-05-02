@@ -34,26 +34,42 @@ if (isset($_SESSION["user_id"])) {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
+//for images
+    $image_file = $_FILES['image'];
+    $image_name = $image_file['name'];
+    $image_data = ($image_file['tmp_name']);
+    $extension = explode('.',$image_name);
+    $fileActualExt = strtolower(end($extension));
+    $newName = uniqid('', true).".".$fileActualExt;
+    
+    
+    
+    $folder='../img/post_images/';
+
+//post the content to database
+
     $dbconn = require __DIR__ . "/db.php";
     $publicProfileSql = "SELECT * FROM account_tb WHERE user_id = $UID";
     $publicProfileSqlResult = $dbconn ->query($publicProfileSql);
     $publicProfile = $publicProfileSqlResult->fetch_assoc();
     $publicUser = $publicProfile["name"];
     $postProfile = $publicProfile["profile_picture_name"];
-    $newPostSql = "INSERT INTO posts(user_id, post_content, public_profile_picture, username) VALUES (?,?,?,?)";
+    $newPostSql = "INSERT INTO posts (user_id, username, public_profile_picture, post_content,post_image) VALUES (?,?,?,?,?)";
     
 
     $stmt = $dbconn->stmt_init();
     $stmt->prepare($newPostSql);
-    $stmt->bind_param("isss",
-                    $$UID,
-                    $_POST["post_content"],
+    $stmt->bind_param("issss",
+                    $UID,
+                    $publicUser,
                     $postProfile,
-                    $publicUser
+                    $_POST["post_content"],
+                    $newName
                     );
 
 
     if($stmt->execute()){
+        move_uploaded_file($image_data,$folder.$newName);
         header("Location: index.php");
     };
                       
@@ -62,6 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 if (! isset($user)){
+
     header("location: login.php");
     exit;
 }
@@ -246,7 +263,7 @@ if (! isset($user)){
             <div class="middle">
 
                 <!--CREATE POST-->
-                <form class="create-post" method = "post">
+                <form class="create-post" method = "post" enctype = "multipart/form-data">
                     <div class="create-post-input">
                         <img src="../img/profile-images/<?=$dp?>">
                         <input type = "text" id ="post_content" name ="post_content" placeholder="Post your pets..." >
@@ -255,7 +272,7 @@ if (! isset($user)){
                     <div class="create-post-links">
                         <li><i class="uil uil-camera"></i>Photo</li>
                         <li><i class="uil uil-video"></i>Video</li>
-                        <li><i class="uil uil-file-upload-alt"></i>Documents</li>
+                        <li><input type = "file" id="image" name ="image" class="uil uil-file-upload-alt"></i>Documents</li>
                         <button class="btn btn-primary" type = "submit" id="submit">Post</li>
                     </div>
                     
@@ -270,7 +287,8 @@ if (! isset($user)){
                     $identifier = $user["username"];
                     $post_content = $user["post_content"];
                     $date_created = $user["date_created"];
-                    $publicDP = $user["public_profile_picture"]?>      
+                    $publicDP = $user["public_profile_picture"];
+                    $post_image = $user["post_image"];?>      
                         <div class="head">
 
                             <div class="user">
@@ -301,7 +319,7 @@ if (! isset($user)){
 
                         <div class="photo">
 
-                            <img src="../img/IMG_8343.png">
+                            <img src="../img/post_images/<?=$post_image?>">
 
                         </div>
 

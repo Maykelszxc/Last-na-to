@@ -14,7 +14,6 @@ if (isset($_POST['submit'])){
                     try{
                         if ($stmt->execute()) {
                       
-                            header("Location: index.php");
                             exit;
                                        }
                                     
