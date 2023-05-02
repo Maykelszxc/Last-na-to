@@ -272,9 +272,15 @@ if (! isset($user)){
                     </div>
                     
                     <div class="create-post-links">
-                        <li><i class="uil uil-camera"></i>Photo</li>
-                        <li><i class="uil uil-video"></i>Video</li>
-                        <li><input type = "file" id="image" name ="image" class="uil uil-file-upload-alt"></i>Documents</li>
+                        <input type="file" id="file" accept="image/*">
+                        <label for="file"><i class="uil uil-camera"></i>Photos</label>
+
+                        <input type="file" id="file" accept="video/*">
+                        <label for="file"><i class="uil uil-video"></i>Videos</label>
+
+                        <input type="file" id="file">
+                        <label for="file"><i class="uil uil-file-upload-alt"></i>Documents</label>
+
                         <button class="btn btn-primary" type = "submit" id="submit">Post</li>
                     </div>
                     

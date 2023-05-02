@@ -101,7 +101,7 @@ if(! isset($_SESSION["user_id"])){
                 <div class="profile-btn">
                     <a href="#" class="primary-btn"><img src="../img/connect.png">Connect</a>
                     <a href="#"><img src="../img//message.png">Message</a>
-                    <a href="#" class="primary-btn"><img src="../img/photo.png">Edit Profile</a>
+                    <a href="update_profile.html" class="primary-btn"><img src="../img/dots.png">Edit Profile</a>
 
                 </div>
             </div>
