@@ -84,7 +84,7 @@ if(! isset($_SESSION["user_id"])){
                 </form>
                 <h1>Andy Deschamps</h1>
                 <h3>Only account</h3>
-                <p>See more about Andy's<a href="#"> contact Info</a>            
+                <p>See more about Andy's<a href="#"> Contact Info</a>            
                 </p>
 
                 <div class="mutual-connection">
@@ -101,6 +101,7 @@ if(! isset($_SESSION["user_id"])){
                 <div class="profile-btn">
                     <a href="#" class="primary-btn"><img src="../img/connect.png">Connect</a>
                     <a href="#"><img src="../img//message.png">Message</a>
+                    <a href="#" class="primary-btn"><img src="../img/photo.png">Edit Profile</a>
 
                 </div>
             </div>
