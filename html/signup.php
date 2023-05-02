@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $dbconn = require __DIR__ . "/db.php";
 
-    $sql = "INSERT INTO account_tb (name, email_address, password,profile_picture_name)
-            VALUES (?, ?, ?,?)";
+    $sql = "INSERT INTO account_tb (name,username, email_address, password,profile_picture_name)
+            VALUES (?, ?, ?,?,?)";
             
     $stmt = $dbconn->stmt_init();
 
@@ -33,8 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         die("SQL error: " . $dbconn->error);
     }
 
-    $stmt->bind_param("ssss",
+    $stmt->bind_param("sssss",
                     $_POST["name"],
+                    $_POST["username"],
                     $_POST["email"],
                     $passwords,
                     $newName);
@@ -102,9 +103,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
                 
                 <div class="form-group">
-                    <?php if ($mismatch): ?> 
-                        <em>Please enter a valid email</em> 
-                        <?php elseif ($notmail):?>
+
+                        <?php if ($notmail):?>
                             <em style = "color: RED">Email already taken </em>
                                 <?php endif;?>
                     <input type="email" id="email" name="email" placeholder="Email" required>

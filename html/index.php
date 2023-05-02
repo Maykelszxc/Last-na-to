@@ -54,17 +54,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $publicProfile = $publicProfileSqlResult->fetch_assoc();
     $publicUser = $publicProfile["name"];
     $postProfile = $publicProfile["profile_picture_name"];
-    $newPostSql = "INSERT INTO posts (user_id, username, public_profile_picture, post_content,post_image) VALUES (?,?,?,?,?)";
+    $userhandle = $publicProfile["username"];
+    $newPostSql = "INSERT INTO posts (user_id, public_name, public_profile_picture, post_content,post_image, handlebar) VALUES (?,?,?,?,?,?)";
     
 
     $stmt = $dbconn->stmt_init();
     $stmt->prepare($newPostSql);
-    $stmt->bind_param("issss",
+    $stmt->bind_param("isssss",
                     $UID,
                     $publicUser,
                     $postProfile,
                     $_POST["post_content"],
-                    $newName
+                    $newName,
+                    $userhandle
                     );
 
 
@@ -146,7 +148,7 @@ if (! isset($user)){
                     <div class="handle">
                         <h4><?=$name?></h4>
                         <p class="text-muted">
-                            @Andy
+                            @<?=$user["username"]?>
                         </p>
                     </div>
                 </a>
@@ -284,11 +286,13 @@ if (! isset($user)){
   
                 <div class="feed">
                 <?php while($user = $posts_result->fetch_assoc()):
-                    $identifier = $user["username"];
+                    $identifier = $user["public_name"];
                     $post_content = $user["post_content"];
                     $date_created = $user["date_created"];
                     $publicDP = $user["public_profile_picture"];
-                    $post_image = $user["post_image"];?>      
+                    $post_image = $user["post_image"];
+                    $handlebar = $user["handlebar"]?>      
+                    
                         <div class="head">
 
                             <div class="user">
@@ -302,6 +306,7 @@ if (! isset($user)){
                                 <div class="info">
 
                                     <h3><?=$identifier?></h3>
+                                    <p class ="text-muted">@<?=$handlebar?></p>
 
                                     <small><?=$date_created?></small>
 
