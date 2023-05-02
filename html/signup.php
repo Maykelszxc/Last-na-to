@@ -122,6 +122,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     <label for="form-label" style = "color: BLACK">Profile Picture</label>
                     <input type="file" class="form-control" name="image" id="image" style = "color: BLACK">
                 </div>
+
+                <div class="form-group">
+                    <label for="form-label" style = "color: BLACK">Cover Photo</label>
+                    <input type="file" class="form-control" name="image" id="image" style = "color: BLACK">
+                </div>
                 
                 <button type="submit" class="btn">Sign Up</button>
 
