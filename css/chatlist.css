@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+:root{
+    --color-primary-hue: 252;
+    --dark-color-ligntness: 17%;
+    --light-color-lightness: 95%;
+    --white-color-lightness: 100%;
+
+    --white-color: hsl(252, 30%, var(--white-color-lightness));
+    --light-color: hsl(252, 30%, var(--light-color-lightness));
+    --gray-color: hsl(var(--color-primary-hue), 15%, 65%);
+    --primary-color: hsl(var(--color-primary-hue), 75%, 60%);
+    --secondary-color: hsl(252, 100%, 90%);
+    --green-color: hsl(120, 95%, 65%);
+    --red-color: hsl(0, 95%, 65%);
+    --dark-color: hsl(252, 30%, var(--dark-color-ligntness));
+    --black-color: hsl(252, 30%, 10%);
+
+    --border-radius: 2rem;
+    --card-border-radius: 1rem;
+    --btn-padding: 0.6rem 2rem;
+    --search-padding: 0.6rem 1rem;
+    --card-padding: 1rem;
+
+    --sticky-top-left: 5.4rem;
+    --sticky-top-right: -18rem;
+}
+
+*, 
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    border: none;
+}
+
+body{
+    font-family: "Poppins", 'sans-serif';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: var(--dark-color);
+    background: var(--light-color);
+    overflow-x: hidden;
+}
+
+.wrapper{
+    background: #fff;
+    width: 450px;
+    border-radius: 16px;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+                0 32px 64px -48px rgba(0,0,0,0.5);
+}
+
+.users{
+    padding: 25px 30px;
+}
+
+.users header,
+.users-list a{
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--light-color);
+}
+
+.wrapper img{
+    object-fit: cover;
+    border-radius: var(--card-border-radius);
+}
+
+.users header .content{
+    display: flex;
+}
+
+.users header .content img{
+    height: 50px;
+    width: 50px;
+}
+
+.users header .details{
+    margin-left: 15px;
+}
+
+.users header .details span{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.users header .logout{
+    color: var(--white-color);
+    font-size: 17px; 
+    padding: var(--card-padding);
+    background: var(--primary-color);
+    border-radius: var(--card-border-radius)
+}
+
+.users .search{
+    margin: 20px 0;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.users .search .text{
+    font-size: 16px;
+}
+
+.users .search input{
+    position: absolute;
+    height: 42px;
+    width: calc(100% - 50px);
+    border: var(--card-border-radius);
+    padding: var(--search-padding);
+    font-size: 16px;
+    border-radius: var(--border-radius);
+    outline: none;
+}
+
+.users .search button{
+    width: 47px;
+    height: 42px;
+    border: none;
+    outline: none;
+    color: var(--white-color);
+    background: var(--primary-color);
+    cursor: pointer;
+    font-size: 17px;
+    border-radius: var(--card-border-radius);
+}
+
+.users-list{
+
+}
+
+.user-list a .content img{
+    
+}

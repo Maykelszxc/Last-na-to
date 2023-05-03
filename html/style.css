@@ -43,7 +43,7 @@ body{
     font-family: "Poppins", sans-serif;
     color: var(--dark-color);
     background: var(--light-color);
-    overflow-x: hidden
+    overflow-x: hidden;
 }
 
 /*---- GENERAL----*/
