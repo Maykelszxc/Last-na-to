@@ -1,14 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
 :root{
-    --blue:#3498db;
-    --dark-blue:#2980b9;
-    --red:#e74c3c;
-    --dark-red:#c0392b;
-    --black:#333;
-    --white:#fff;
-    --light-bg:#eee;
+    --color-primary-hue: 252;
+    --dark-color-ligntness: 17%;
+    --light-color-lightness: 95%;
+    --white-color-lightness: 100%;
+
+    --white-color: hsl(252, 30%, var(--white-color-lightness));
+    --light-color: hsl(252, 30%, var(--light-color-lightness));
+    --gray-color: hsl(var(--color-primary-hue), 15%, 65%);
+    --primary-color: hsl(var(--color-primary-hue), 75%, 60%);
+    --secondary-color: hsl(252, 100%, 90%);
+    --green-color: hsl(120, 95%, 65%);
+    --red-color: hsl(0, 95%, 65%);
+    --dark-color: hsl(252, 30%, var(--dark-color-ligntness));
+    --black-color: hsl(252, 30%, 10%);
+
+    --border-radius: 2rem;
+    --card-border-radius: 1rem;
+    --btn-padding: 0.6rem 2rem;
+    --search-padding: 0.6rem 1rem;
+    --card-padding: 1rem;
+
+    --sticky-top-left: 5.4rem;
+    --sticky-top-right: -18rem;
     --box-shadow:0 5px 10px rgba(0,0,0,.1);
+
+    --border-radius: 2rem;
+    --card-border-radius: 1rem;
+    --btn-padding: 0.6rem 2rem;
+    --search-padding: 0.6rem 1rem;
+    --card-padding: 1rem;
 }
 
 *{
@@ -28,32 +50,32 @@
 }
 
 *::-webkit-scrollbar-thumb{
-    background-color: var(--blue);
+    background-color: var(--light-color);
 }
 
 .update-profile{
    min-height: 100vh;
-   background-color: var(--light-bg);
+   background-color: var(--light-color);
    display: flex;
    align-items: center;
    justify-content: center;
-   padding:20px;
+   padding:var(--btn-padding);
 }
 
 .update-profile form{
    padding:20px;
-   background-color: var(--white);
+   background-color: var(--white-color);
    box-shadow: var(--box-shadow);
    text-align: center;
    width: 700px;
    text-align: center;
-   border-radius: 5px;
+   border-radius: var(--border-radius);
 }
 
 .update-profile form img{
    height: 200px;
    width: 200p;
-   border-radius: 50%;
+   border-radius: var(--card-border-radius);
    object-fit: cover;
    margin-bottom: 5px;
 }
@@ -74,17 +96,21 @@
    display: block;
    margin-top: 15px;
    font-size: 17px;
-   color:var(--black);
+   color:var(--black-color);
 }
 
 .update-profile form .flex .inputBox .box{
    width: 100%;
-   border-radius: 5px;
-   background-color: var(--light-bg);
+   border-radius: var(--border-radius);
+   background-color: var(--light-color);
    padding:12px 14px;
    font-size: 17px;
-   color:var(--black);
+   color:var(--black-color);
    margin-top: 10px;
+}
+
+.update-profile .btn{
+   width: 100px;
 }
 
 @media (max-width:650px){
