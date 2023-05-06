@@ -241,3 +241,16 @@ Bg3.addEventListener('click', () => {
 
     changeBG();
 })
+
+/*---- INTER ACTION BUTTONS  ----*/
+
+var btnvar1 = document.getElementById('btnh1');
+
+function Toggle1(){
+    if(btnvar1.style.color =="red"){
+        btnvar1.style.color = "black"
+    }
+    else{
+        btnvar1.style.color = "red"
+    }
+}
