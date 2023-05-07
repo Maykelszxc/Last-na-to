@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
     
     
+    
     $folder='../img/post_images/';
 
 //post the content to database
@@ -72,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if($stmt->execute()){
         move_uploaded_file($image_data,$folder.$newName);
-        header("Location: index.php");
+    header("location: index.php");
     };
                       
 
@@ -226,7 +227,7 @@ if (! isset($user)){
 
                     <!--END OF NOTIFICATION POPUP-->
 
-                    <a class="menu-item" id="messages-notifications">
+                    <a href = "chat/index.php" class="menu-item" id="messages-notifications">
 
                         <span><i class="uil uil-envelope-alt"><small class="notification-count">6</small></i></span>
                         <h3>Messages</h3>
