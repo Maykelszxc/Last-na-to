@@ -5,16 +5,7 @@ $notmail = FALSE;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-        $image_file = $_FILES['image'];
-        $image_name = $image_file['name'];
-        $image_data = ($image_file['tmp_name']);
-        $extension = explode('.',$image_name);
-        $fileActualExt = strtolower(end($extension));
-        $newName = uniqid('', true).".".$fileActualExt;
-    
-    
-    
-        $folder='../img/profile-images/';
+    $defaultProfile = "default.jpg";
         
     
 
@@ -38,21 +29,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     $_POST["username"],
                     $_POST["email"],
                     $passwords,
-                    $newName);
+                    $defaultProfile);
                     
-    try{
+
         if ($stmt->execute()) {
 
-            move_uploaded_file($image_data,$folder.$newName);        
+    
             header("Location: login.php");
             exit;
                        }
-                    
-    }catch(Exception $err) {
-           
-            $notmail = true;
-            }
 }
+                    
+
 ?>
 
 <!DOCTYPE html>
