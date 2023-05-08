@@ -6,6 +6,12 @@ checker
             rule: "required"
         }
     ])
+    .addField("#username", [
+        {
+            rule: "required"
+        }
+    ])
+
     .addField("#email", [
         {
             rule: "required"

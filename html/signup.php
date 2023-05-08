@@ -32,11 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     $defaultProfile);
                     
 
-        if ($stmt->execute()) {
+        if (! $stmt->execute()) {
+            $notmail = true;
 
     
-            header("Location: login.php");
-            exit;
+
                        }
 }
                     
@@ -103,17 +103,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         <em>Password must be at least 8 characters and have 1 letter and number</em> 
                         <?php endif; ?>
                     <input type="password" id="passwords" name="passwords" placeholder="Password" required>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="form-label" style = "color: BLACK">Profile Picture</label>
-                    <input type="file" class="form-control" name="image" id="image" style = "color: BLACK">
-                </div>
-
-                <div class="form-group">
-                    <label for="form-label" style = "color: BLACK">Cover Photo</label>
-                    <input type="file" class="form-control" name="image" id="image" style = "color: BLACK">
                 </div>
                 
                 <button type="submit" class="btn">Sign Up</button>

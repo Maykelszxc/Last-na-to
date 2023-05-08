@@ -17,6 +17,7 @@ if (isset($_SESSION["user_id"])) {
     $user = $result->fetch_assoc();
     
     $dp = $user["profile_picture_name"];
+    $name = $user["name"];
 
 };
 
@@ -82,9 +83,9 @@ if(! isset($_SESSION["user_id"])){
                     <button type="submit" name="submit">Submit</button>
 
                 </form>
-                <h1>Andy Deschamps</h1>
+                <h1><?=$name?></h1>
                 <h3>Only account</h3>
-                <p>See more about Andy's<a href="#"> Contact Info</a>            
+                <p>See more about <?=$name?><a href="#"> Contact Info</a>            
                 </p>
 
                 <div class="mutual-connection">

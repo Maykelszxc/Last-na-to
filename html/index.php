@@ -276,7 +276,7 @@ if (! isset($user)){
                     </div>
                     
                     <div class="create-post-links">
-                        <input type="file" id="file" name="image" accept="image/*">
+                        <input type="file" id="file" name="image" accept="image/*" required>
                         <label for="file"><i class="uil uil-camera"></i>Photos</label>
 
                         <input type="file" id="file" accept="video/*">

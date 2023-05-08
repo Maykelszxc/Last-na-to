@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="signup">
                 <div class="form-group">
                 <?php if ($no_credential): ?> 
-                    <em style = "color: white">No Matching Credentials</em> 
+                   <h3 style = "color: RED">No Matching Credentials</h3> 
                         <?php endif;?>
                     <input type="email" id="email-login" name="email-login" placeholder="Email" required>
                 </div>
