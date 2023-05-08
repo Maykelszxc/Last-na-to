@@ -95,6 +95,8 @@ img{
     color: var(--white-color);
 }
 
+
+
 .text-muted{
     color: var(--gray-color);
 }
@@ -369,6 +371,15 @@ main .container .left .profile{
 input[type="file"]{
     display: none;
 }
+
+.btn-comments{
+    background: var(--primary-color);
+    color: var(--white-color);
+    margin-left: 16rem;
+}
+
+
+
 
 
 /*---- NEWS FEED ----*/

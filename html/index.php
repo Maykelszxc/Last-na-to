@@ -345,6 +345,12 @@ if (! isset($user)){
 
                             </div>
 
+                            <div class="comment">
+                                <input type="text" class="comment-section" placeholder="Write a comment...">
+                                <button class="btn btn-comments"><i class="uil uil-message"></i></button>
+
+                            </div>
+
                             <div class="home">
                                 <button id="btnh1" class="btnh1"></i></button>
                             </div>
