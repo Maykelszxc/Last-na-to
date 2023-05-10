@@ -32,7 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     $defaultProfile);
                     
 
-        if (! $stmt->execute()) {
+        if ($stmt->execute()) {
+            header("location: login.php");
             $notmail = true;
 
     

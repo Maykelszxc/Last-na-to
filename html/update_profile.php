@@ -1,3 +1,26 @@
+<?php 
+session_start();
+
+include "db.php";
+
+$UID = $_SESSION["user_id"];
+
+$sql = "SELECT * FROM account_tb WHERE user_id = $UID";
+
+$sqlQuery =$dbconn->query($sql);
+$result = $sqlQuery->fetch_assoc();
+
+$username = $result["username"];
+$old_password = $result["password"];
+$name = $result["name"];
+$email = $result["email_address"];
+$profile = $result["profile_picture_name"]
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,22 +38,25 @@
 <div class="update-profile">
 
 
-   <form action="" method="post" enctype="multipart/form-data">
+   <form action="profileu.php" method="post" enctype="multipart/form-data">
       
       <div class="flex">
          <div class="inputBox">
 
+            <span>Name :</span>
+            <input type="text" id= "update_name" name="update_name" class="box" value=<?=$name?>>
+
             <span>Username :</span>
-            <input type="text" name="update_name" class="box">
+            <input type="text" id= "update_username" name="update_username" class="box" value=<?=$username?>>
 
             <span>Your email :</span>
-            <input type="email" name="update_email" class="box">
+            <input type="email" id="update_email" name="update_email" class="box" value=<?=$email?>>
 
             <span>Update your profile picture :</span>
-            <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
+            <input type="file" id="update_image" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box" value=<?=$profile?>>
 
             <span>Update your cover photo :</span>
-            <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
+            <input type="file" id="update_cover" name="update_cover" accept="image/jpg, image/jpeg, image/png" class="box">
             
          </div>
          <div class="inputBox">
@@ -46,7 +72,7 @@
          </div>
       </div>
 
-      <input type="submit" value="Update Profile" name="update_profile" class="btn">
+      <input type="submit" value="Update Profile" id="submit" name="submit" class="btn">
       <a href="../html/profile.php" class="delete-btn">Go back</a>
    </form>
 

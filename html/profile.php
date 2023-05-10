@@ -74,15 +74,11 @@ if(! isset($_SESSION["user_id"])){
     <div class="profile-main">
 
         <div class="profile-container">
-            <img src="../img/cover.png" width="100%">
+            <img src="../img/cover_images/<?=$user["cover_photo"]?>" width="400" height="500">
 
             <div class="profile-container-inner">
                 <img src="../img/profile-images/<?=($user["profile_picture_name"])?>" class="profile-pic">
-                <form method="post" action="profileu.php" enctype="multipart/form-data">
-                    <input type="file" name="image" id="image">
-                    <button type="submit" name="submit">Submit</button>
 
-                </form>
                 <h1><?=$name?></h1>
                 <h3>Only account</h3>
                 <p>See more about <?=$name?><a href="#"> Contact Info</a>            
@@ -102,7 +98,7 @@ if(! isset($_SESSION["user_id"])){
                 <div class="profile-btn">
                     <a href="#" class="primary-btn"><img src="../img/connect.png">Connect</a>
                     <a href="#"><img src="../img//message.png">Message</a>
-                    <a href="update_profile.html" class="primary-btn"><img src="../img/dots.png">Edit Profile</a>
+                    <a href="update_profile.php" class="primary-btn"><img src="../img/dots.png">Edit Profile</a>
 
                 </div>
             </div>
