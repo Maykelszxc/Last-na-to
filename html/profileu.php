@@ -40,8 +40,12 @@ if (isset($_POST['submit'])) {
     $id = $result->fetch_assoc();
 
     $sql = "UPDATE account_tb set username='" . $_POST["update_username"]. "', email_address='" . $_POST['update_email'] . "', profile_picture_name='" . $newProfileName. "', name='". $name ."', cover_photo='". $newCoverName ."' WHERE user_id='" . $UID . "'";
+    $publicSQL = "UPDATE posts set handlebar='" . $_POST["update_username"]. "', public_profile_picture='" . $newProfileName. "', public_name='". $name ."' WHERE user_id='" . $UID . "'";
 
    if (mysqli_query($dbconn, $sql)){
+    mysqli_query($dbconn, $publicSQL);
+    
+
     $dp = move_uploaded_file($image_data,$folder.$newProfileName);
     $cp = move_uploaded_file($cover_data,$coverFolder.$newCoverName);
     header("location:profile.php");

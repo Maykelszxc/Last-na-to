@@ -33,7 +33,7 @@ if (isset($_SESSION["user_id"])) {
 };
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
+if (isset($_POST["submit"])){
 //for images
     $image_file = $_FILES['image'];
     $image_name = $image_file['name'];
@@ -78,6 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                       
 
                 };
+
 
 
 if (! isset($user)){
@@ -269,7 +270,7 @@ if (! isset($user)){
             <div class="middle">
 
                 <!--CREATE POST-->
-                <form class="create-post" method = "post" enctype = "multipart/form-data">
+                <form id="content_post" name="content_post" class="create-post" method = "post" enctype = "multipart/form-data">
                     <div class="create-post-input">
                         <img src="../img/profile-images/<?=$dp?>">
                         <input type = "text" id ="post_content" name ="post_content" placeholder="Post your pets..." >
@@ -285,7 +286,7 @@ if (! isset($user)){
                         <input type="file" id="file">
                         <label for="file"><i class="uil uil-file-upload-alt"></i>Documents</label>
 
-                        <button class="btn btn-primary" type = "submit" id="submit">Post</li>
+                        <button name = "submit" class="btn btn-primary" type = "submit" id="submit">Post</li>
                     </div>
                     
                 </form>
@@ -301,7 +302,8 @@ if (! isset($user)){
                     $date_created = $user["date_created"];
                     $publicDP = $user["public_profile_picture"];
                     $post_image = $user["post_image"];
-                    $handlebar = $user["handlebar"]?>      
+                    $handlebar = $user["handlebar"];
+                    $post_id = $user["post_id"];?>      
                     
                         <div class="head">
 
@@ -346,32 +348,47 @@ if (! isset($user)){
                                 <button id="btnh1" class="btnh1"><i class="uil uil-house-user"></i></button>
 
                             </div>
-
+                            
+                            <form action="comment.php" method = "post">
                             <div class="comment">
-                                <input type="text" class="comment-section" placeholder="Write a comment...">
-                                <button class="btn btn-comments"><i class="uil uil-message"></i></button>
-
+                                <input type ="hidden" name="post_id" id="post_id" value="<?=$post_id?>">
+                                <input id="comment" name ="comment" type="text" class="comment-section" placeholder="Write a comment...">
+                                <button id="submit_comment" name ="submit_comment" class="btn btn-comments" type="submit"><i class="uil uil-message"></i></button>
                             </div>
+                </form>
+                <?php 
+
+
+
+
+?>
+
 
                             <div class="home">
                                 <button id="btnh1" class="btnh1"></i></button>
                             </div>
                         </div>
 
-                        <div class="liked-by">
-
-                            <span><img src="../img/Developers/Developer AJ.png"></span>
-                            <span><img src="../img/Developers/Developer Calvin.png"></span>
-                            <span><img src="../img/Developers/Developer Mayks.png"></span>
-
-                            <p>Liked by <b>Calvin De Luna</b> and 3 others</p> 
-                        </div>
 
                         <div class="captions">
                             <p><b><?=$identifier?></b><?=" ", $post_content?></p>
                         </div>
+                        <div class="comments">
+                            
+                            <?php include "showComment.php";
+                            while ($userComment = $queryComments -> fetch_assoc()):
+                                $commenter = $userComment["username"];
+                                $commentContent = $userComment["content"];
+                            
+                            
+                            ?>
+                            <p><b><?=$commenter?></b><?=" ", $commentContent?></p>
+                            <?php endwhile;?>
+                            
+                        </div>
+                        
 
-                        <div class="comments text-muted">View all 3 comments</div>
+
                         <div style="height: 10px; background-color: #EAEFF5; margin-bottom: 12px" ></div>
 
                         <?php endwhile;?>
@@ -627,3 +644,9 @@ if (! isset($user)){
 
 </body>
 </html>
+
+<?php 
+
+
+
+
