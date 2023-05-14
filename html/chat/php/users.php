@@ -2,7 +2,7 @@
     session_start();
     include_once "../../db.php";
     $outgoing_id = $_SESSION['user_id'];
-    die($outgoing_id);
+    die();
     $sql = "SELECT * FROM account_tb WHERE NOT user_id = {$outgoing_id} ORDER BY user_id DESC";
     $query = mysqli_query($dbconn, $sql);
     $output = "";

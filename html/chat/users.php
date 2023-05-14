@@ -26,7 +26,7 @@
         <a href="../logout.php" class="logout">Logout</a>
       </header>
       <div class="search">
-        <span class="text">Select an user to start chat</span>
+        <span class="text">Select a user to start a chat with</span>
         <input type="text" placeholder="Enter name to search...">
         <button><i class="fas fa-search"></i></button>
       </div>
